@@ -12,3 +12,7 @@ apt install -y \
 
 apt install -y \
     libssl-dev
+
+apt install -y \
+    wget \
+    unzip
