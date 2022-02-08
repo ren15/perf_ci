@@ -1,0 +1,24 @@
+name: ci
+on: push
+
+env:
+  DEBIAN_FRONTEND: noninteractive
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    container: debian:11
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: system bootstrap
+        run: |
+          bash ci/deb_install.sh
+
+      - name: git clone linux
+        shell: bash
+        run: |
+          wget -c https://github.com/torvalds/linux/archive/refs/tags/v5.4.zip
+          unzip v5.4.zip
+          ls
+
