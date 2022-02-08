@@ -16,3 +16,6 @@ apt install -y \
 apt install -y \
     wget \
     unzip
+
+apt install -y \
+    flex bison
