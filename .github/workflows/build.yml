@@ -18,12 +18,9 @@ jobs:
       - name: git clone linux
         shell: bash
         run: |
-          wget -c -q https://github.com/torvalds/linux/archive/refs/tags/v5.4.zip
-          unzip -q v5.4.zip
-          make -C linux-5.4/tools/perf
-          mkdir linux5.4_perf
-          mv linux-5.4/tools/perf linux5.4_perf/
-          tar cvzf linux5.4_perf.tar.gz ./linux5.4_perf
+          bash scripts/build_for_linux.sh 4.15
+          bash scripts/build_for_linux.sh 5.4
+          bash scripts/build_for_linux.sh 3.10
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
@@ -31,4 +28,4 @@ jobs:
           automatic_release_tag: "latest"
           title: "Development Build"
           files: |
-            linux5.4_perf.tar.gz
+            linux_*_perf.tar.gz
